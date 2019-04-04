@@ -1,0 +1,511 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY games "http://www.semanticweb.org/user/ontologies/2018/10/games#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/user/ontologies/2018/10/games"
+     xml:base="http://www.semanticweb.org/user/ontologies/2018/10/games"
+     xmlns:games="http://www.semanticweb.org/user/ontologies/2018/10/games#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/user/ontologies/2018/10/games"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#hasDifficulty -->
+
+    <owl:ObjectProperty rdf:about="&games;hasDifficulty">
+        <rdfs:range rdf:resource="&games;DifficultyLevel"/>
+        <rdfs:domain rdf:resource="&games;Game"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#hasGenre -->
+
+    <owl:ObjectProperty rdf:about="&games;hasGenre">
+        <rdfs:domain rdf:resource="&games;Game"/>
+        <rdfs:range rdf:resource="&games;Genre"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#hasPlatform -->
+
+    <owl:ObjectProperty rdf:about="&games;hasPlatform">
+        <rdfs:domain rdf:resource="&games;Game"/>
+        <rdfs:range rdf:resource="&games;Platform"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#hasPublished -->
+
+    <owl:ObjectProperty rdf:about="&games;hasPublished">
+        <rdfs:range rdf:resource="&games;Game"/>
+        <rdfs:domain rdf:resource="&games;GamePublisher"/>
+        <owl:inverseOf rdf:resource="&games;isPublishedBy"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#isPublishedBy -->
+
+    <owl:ObjectProperty rdf:about="&games;isPublishedBy">
+        <rdfs:domain rdf:resource="&games;Game"/>
+        <rdfs:range rdf:resource="&games;GamePublisher"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="&owl;topObjectProperty">
+        <rdfs:subPropertyOf rdf:resource="&games;hasPublished"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#CountOfPlayer -->
+
+    <owl:DatatypeProperty rdf:about="&games;CountOfPlayer"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Name -->
+
+    <owl:DatatypeProperty rdf:about="&games;Name"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#ServerName -->
+
+    <owl:DatatypeProperty rdf:about="&games;ServerName"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Theme -->
+
+    <owl:DatatypeProperty rdf:about="&games;Theme"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Value -->
+
+    <owl:DatatypeProperty rdf:about="&games;Value"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Version -->
+
+    <owl:DatatypeProperty rdf:about="&games;Version"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Cards -->
+
+    <owl:Class rdf:about="&games;Cards">
+        <rdfs:subClassOf rdf:resource="&games;NameOfGame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Chess -->
+
+    <owl:Class rdf:about="&games;Chess">
+        <rdfs:subClassOf rdf:resource="&games;NameOfGame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&games;hasGenre"/>
+                <owl:someValuesFrom rdf:resource="&games;MultiPlayer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&games;hasPlatform"/>
+                <owl:someValuesFrom rdf:resource="&games;MacOSX"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&games;hasGenre"/>
+                <owl:someValuesFrom rdf:resource="&games;SinglePlayer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&games;hasPlatform"/>
+                <owl:someValuesFrom rdf:resource="&games;Windows"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&games;hasPlatform"/>
+                <owl:someValuesFrom rdf:resource="&games;Linux"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#DifficultyLevel -->
+
+    <owl:Class rdf:about="&games;DifficultyLevel">
+        <rdfs:subClassOf rdf:resource="&games;ValuePartition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Easy -->
+
+    <owl:Class rdf:about="&games;Easy">
+        <owl:equivalentClass rdf:resource="&games;Hard"/>
+        <owl:equivalentClass rdf:resource="&games;Medium"/>
+        <rdfs:subClassOf rdf:resource="&games;DifficultyLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Game -->
+
+    <owl:Class rdf:about="&games;Game">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#GamePublisher -->
+
+    <owl:Class rdf:about="&games;GamePublisher"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Genre -->
+
+    <owl:Class rdf:about="&games;Genre">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Hard -->
+
+    <owl:Class rdf:about="&games;Hard">
+        <owl:equivalentClass rdf:resource="&games;Medium"/>
+        <rdfs:subClassOf rdf:resource="&games;DifficultyLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Linux -->
+
+    <owl:Class rdf:about="&games;Linux">
+        <rdfs:subClassOf rdf:resource="&games;Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#MacOSX -->
+
+    <owl:Class rdf:about="&games;MacOSX">
+        <rdfs:subClassOf rdf:resource="&games;Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Medium -->
+
+    <owl:Class rdf:about="&games;Medium">
+        <rdfs:subClassOf rdf:resource="&games;DifficultyLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#MultiPlayer -->
+
+    <owl:Class rdf:about="&games;MultiPlayer">
+        <rdfs:subClassOf rdf:resource="&games;Genre"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#NameOfGame -->
+
+    <owl:Class rdf:about="&games;NameOfGame">
+        <rdfs:subClassOf rdf:resource="&games;Game"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Online -->
+
+    <owl:Class rdf:about="&games;Online">
+        <rdfs:subClassOf rdf:resource="&games;Genre"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Platform -->
+
+    <owl:Class rdf:about="&games;Platform">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#SinglePlayer -->
+
+    <owl:Class rdf:about="&games;SinglePlayer">
+        <rdfs:subClassOf rdf:resource="&games;Genre"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Sudoku -->
+
+    <owl:Class rdf:about="&games;Sudoku">
+        <rdfs:subClassOf rdf:resource="&games;NameOfGame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&games;hasGenre"/>
+                <owl:someValuesFrom rdf:resource="&games;SinglePlayer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&games;hasPlatform"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&games;Linux"/>
+                            <rdf:Description rdf:about="&games;Windows"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#ValuePartition -->
+
+    <owl:Class rdf:about="&games;ValuePartition">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Windows -->
+
+    <owl:Class rdf:about="&games;Windows">
+        <rdfs:subClassOf rdf:resource="&games;Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#AndySinglePlayer -->
+
+    <owl:NamedIndividual rdf:about="&games;AndySinglePlayer">
+        <rdf:type rdf:resource="&games;SinglePlayer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#AndyWithJohn -->
+
+    <owl:NamedIndividual rdf:about="&games;AndyWithJohn"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Assassin&apos;s_Creed:_Brotherhood -->
+
+    <owl:NamedIndividual rdf:about="&games;Assassin&apos;s_Creed:_Brotherhood"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Beginner -->
+
+    <owl:NamedIndividual rdf:about="&games;Beginner">
+        <rdf:type rdf:resource="&games;Easy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#BrainCrash -->
+
+    <owl:NamedIndividual rdf:about="&games;BrainCrash">
+        <rdf:type rdf:resource="&games;Chess"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#ChSudoku -->
+
+    <owl:NamedIndividual rdf:about="&games;ChSudoku">
+        <rdf:type rdf:resource="&games;Sudoku"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#CrazyJack -->
+
+    <owl:NamedIndividual rdf:about="&games;CrazyJack">
+        <games:CountOfPlayer rdf:datatype="&xsd;integer">3</games:CountOfPlayer>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Easy -->
+
+    <owl:NamedIndividual rdf:about="&games;Easy"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Hard -->
+
+    <owl:NamedIndividual rdf:about="&games;Hard"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#JohnTeam -->
+
+    <owl:NamedIndividual rdf:about="&games;JohnTeam">
+        <rdf:type rdf:resource="&games;MultiPlayer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#LinuxMint -->
+
+    <owl:NamedIndividual rdf:about="&games;LinuxMint">
+        <rdf:type rdf:resource="&games;Linux"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Medium -->
+
+    <owl:NamedIndividual rdf:about="&games;Medium"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Nintendo -->
+
+    <owl:NamedIndividual rdf:about="&games;Nintendo">
+        <rdf:type rdf:resource="&games;GamePublisher"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#OnlineGame -->
+
+    <owl:NamedIndividual rdf:about="&games;OnlineGame"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#PuzzleGame -->
+
+    <owl:NamedIndividual rdf:about="&games;PuzzleGame"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Spider -->
+
+    <owl:NamedIndividual rdf:about="&games;Spider">
+        <games:Theme>Standart</games:Theme>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#TutorialLevel -->
+
+    <owl:NamedIndividual rdf:about="&games;TutorialLevel">
+        <rdf:type rdf:resource="&games;Easy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Warcraft3:Reforged -->
+
+    <owl:NamedIndividual rdf:about="&games;Warcraft3:Reforged">
+        <games:ServerName></games:ServerName>
+        <games:hasGenre rdf:resource="&games;OnlineGame"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#Windows_7 -->
+
+    <owl:NamedIndividual rdf:about="&games;Windows_7">
+        <rdf:type rdf:resource="&games;Windows"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2018/10/games#macOS_Server_5.4_(High_Sierra_10.13) -->
+
+    <owl:NamedIndividual rdf:about="&games;macOS_Server_5.4_(High_Sierra_10.13)">
+        <rdf:type rdf:resource="&games;MacOSX"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
